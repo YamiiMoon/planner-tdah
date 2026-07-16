@@ -221,19 +221,30 @@ def download():
     if not session.get("download_authorized"):
         abort(403)
 
-    pdf_path = os.path.join(app.root_path, "secure", PDF_FILENAME)
-    if not os.path.exists(pdf_path):
-        abort(404)
+    secure_dir = os.path.join(app.root_path, "secure")
+    pdf_path = os.path.join(secure_dir, PDF_FILENAME)
+    html_path = os.path.join(secure_dir, "index.html")
 
     session.pop("download_authorized", None)
     session.pop("download_token", None)
 
-    return send_file(
-        pdf_path,
-        as_attachment=True,
-        download_name=PDF_FILENAME,
-        mimetype="application/pdf"
-    )
+    if os.path.exists(pdf_path):
+        return send_file(
+            pdf_path,
+            as_attachment=True,
+            download_name=PDF_FILENAME,
+            mimetype="application/pdf"
+        )
+
+    if os.path.exists(html_path):
+        return send_file(
+            html_path,
+            as_attachment=True,
+            download_name="planner-tdah-produtivo.html",
+            mimetype="text/html"
+        )
+
+    abort(404)
 
 
 # --- Webhook Asaas ---

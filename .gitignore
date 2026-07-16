@@ -1,7 +1,3 @@
-# PDF protegido
-secure/
-secure/*.pdf
-
 # Python
 __pycache__/
 *.pyc
