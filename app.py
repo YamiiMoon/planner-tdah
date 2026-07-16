@@ -47,9 +47,10 @@ def cleanup_expired_payments():
 def create_asaas_customer():
     url = f"{get_asaas_url()}/customers"
     payload = {
-        "name": "Cliente PIX",
-        "cpfCnpj": "00000000000"
-    }
+    "name": nome,
+    "cpfCnpj": cpf,
+    "email": email
+}
     try:
         response = requests.post(
             url, json=payload, headers=asaas_headers(), timeout=ASAAS_TIMEOUT
