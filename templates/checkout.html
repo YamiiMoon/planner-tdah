@@ -77,8 +77,32 @@
                 <!-- Área de Pagamento -->
                 <div class="checkout-payment">
                     <div class="checkout-card">
+                        <!-- Estado: Formulário -->
+                        <div id="paymentForm" class="payment-state">
+                            <div class="payment-header">
+                                <h2>Seus dados</h2>
+                                <p>Preencha para gerar o PIX</p>
+                            </div>
+                            <form id="customerForm" class="customer-form">
+                                <div class="form-group">
+                                    <label for="inputNome">Nome completo</label>
+                                    <input type="text" id="inputNome" placeholder="Seu nome" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail">E-mail</label>
+                                    <input type="email" id="inputEmail" placeholder="seu@email.com" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputCpf">CPF</label>
+                                    <input type="text" id="inputCpf" placeholder="000.000.000-00" maxlength="14" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block">Gerar PIX</button>
+                                <p class="form-hint">Seus dados são usados apenas para gerar a cobrança.</p>
+                            </form>
+                        </div>
+
                         <!-- Estado: Gerando PIX -->
-                        <div id="paymentLoading" class="payment-state">
+                        <div id="paymentLoading" class="payment-state" style="display:none;">
                             <div class="payment-header">
                                 <h2>Gerando pagamento...</h2>
                                 <p>Estamos preparando seu PIX. Aguarde um momento.</p>

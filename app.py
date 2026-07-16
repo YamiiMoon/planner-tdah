@@ -44,13 +44,13 @@ def cleanup_expired_payments():
         del payments_db[token]
 
 
-def create_asaas_customer():
+def create_asaas_customer(nome, email, cpf):
     url = f"{get_asaas_url()}/customers"
     payload = {
-    "name": nome,
-    "cpfCnpj": cpf,
-    "email": email
-}
+        "name": nome,
+        "cpfCnpj": cpf,
+        "email": email
+    }
     try:
         response = requests.post(
             url, json=payload, headers=asaas_headers(), timeout=ASAAS_TIMEOUT
@@ -142,7 +142,15 @@ def success():
 def api_create_payment():
     cleanup_expired_payments()
 
-    customer_id = create_asaas_customer()
+    data = request.get_json(silent=True) or {}
+    nome = data.get("nome", "").strip()
+    email = data.get("email", "").strip()
+    cpf = data.get("cpf", "").strip().replace(".", "").replace("-", "")
+
+    if not nome or not email or not cpf:
+        return jsonify({"error": "Preencha todos os campos."}), 400
+
+    customer_id = create_asaas_customer(nome, email, cpf)
     if not customer_id:
         return jsonify({
             "error": "Serviço de pagamento temporariamente indisponível. Tente novamente em alguns segundos."
