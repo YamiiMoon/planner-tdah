@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Start-Process \"C:\\\\Users\\\\João\\\\Desktop\\\\planner\\\\index.html\")",
+      "WebFetch(domain:matematica.profjulianagamon.online)",
+      "Bash(not exist *)",
+      "PowerShell(Move-Item *)",
+      "PowerShell(if \\(-not \\(Test-Path \"C:\\\\Users\\\\João\\\\Desktop\\\\planner\\\\secure\"\\)\\) { New-Item -ItemType Directory \"C:\\\\Users\\\\João\\\\Desktop\\\\planner\\\\secure\" })",
+      "PowerShell(python -c \"import ast; ast.parse\\(open\\('C:/Users/João/Desktop/planner/app.py', encoding='utf-8'\\).read\\(\\)\\); print\\('app.py OK'\\)\")"
+    ]
+  }
+}

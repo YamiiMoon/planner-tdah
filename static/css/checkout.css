@@ -1,0 +1,338 @@
+/* ==========================================
+   CHECKOUT PAGE STYLES
+   ========================================== */
+
+.page-checkout {
+    min-height: 100vh;
+    background: var(--gray-50);
+    display: flex;
+    flex-direction: column;
+}
+
+.checkout-header {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-100);
+    padding: 20px 0;
+}
+
+.checkout-header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.checkout-back {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--gray-500);
+    font-size: 0.875rem;
+    transition: var(--transition);
+}
+
+.checkout-back:hover {
+    color: var(--primary);
+}
+
+.checkout-secure {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8125rem;
+    color: var(--gray-400);
+}
+
+.checkout-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+}
+
+.checkout-card {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    width: 100%;
+    max-width: 480px;
+    overflow: hidden;
+}
+
+.checkout-product {
+    padding: 32px 32px 24px;
+    border-bottom: 1px solid var(--gray-100);
+}
+
+.checkout-product-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.checkout-product-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-md);
+    background: var(--primary-50);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.checkout-product-name {
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 4px;
+}
+
+.checkout-product-desc {
+    font-size: 0.8125rem;
+    color: var(--gray-400);
+}
+
+.checkout-product-price {
+    margin-top: 20px;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.checkout-product-price .price-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gray-900);
+}
+
+.checkout-product-price .price-label {
+    font-size: 0.875rem;
+    color: var(--gray-400);
+}
+
+/* Payment Area */
+.checkout-payment {
+    padding: 32px;
+}
+
+.payment-method {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: var(--gray-50);
+    border-radius: var(--radius-md);
+    margin-bottom: 24px;
+}
+
+.payment-method-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--white);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-sm);
+}
+
+.payment-method-label {
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: var(--gray-800);
+}
+
+.payment-method-desc {
+    font-size: 0.75rem;
+    color: var(--gray-400);
+}
+
+/* QR Code Area */
+.qr-code-container {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.qr-code-box {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 16px;
+    border-radius: var(--radius-md);
+    border: 2px solid var(--gray-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--white);
+    overflow: hidden;
+}
+
+.qr-code-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 8px;
+}
+
+.qr-code-box .qr-placeholder {
+    color: var(--gray-300);
+    font-size: 0.8125rem;
+}
+
+/* Copy Code */
+.pix-copy-container {
+    margin-bottom: 24px;
+}
+
+.pix-copy-label {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--gray-500);
+    margin-bottom: 8px;
+}
+
+.pix-copy-field {
+    display: flex;
+    gap: 8px;
+}
+
+.pix-copy-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    font-size: 0.8125rem;
+    font-family: monospace;
+    color: var(--gray-600);
+    background: var(--gray-50);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pix-copy-btn {
+    padding: 12px 20px;
+    background: var(--primary);
+    color: var(--white);
+    border-radius: var(--radius-sm);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.pix-copy-btn:hover {
+    background: var(--primary-light);
+}
+
+.pix-copy-btn.copied {
+    background: var(--success);
+}
+
+/* Payment Status */
+.payment-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px;
+    border-radius: var(--radius-md);
+    background: var(--gray-50);
+    border: 1px solid var(--gray-100);
+}
+
+.payment-status.pending {
+    border-color: var(--warning);
+    background: #FFFBEB;
+}
+
+.payment-status.approved {
+    border-color: var(--success);
+    background: #ECFDF5;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--warning);
+    animation: pulse-status 1.5s infinite;
+}
+
+.payment-status.approved .status-dot {
+    background: var(--success);
+    animation: none;
+}
+
+@keyframes pulse-status {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+.status-text {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--gray-600);
+}
+
+.payment-status.approved .status-text {
+    color: var(--success);
+}
+
+/* Loading State */
+.checkout-loading {
+    text-align: center;
+    padding: 48px 32px;
+}
+
+.loading-spinner {
+    width: 48px;
+    height: 48px;
+    border: 3px solid var(--gray-100);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 16px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.checkout-loading p {
+    font-size: 0.9375rem;
+    color: var(--gray-500);
+}
+
+/* Timer */
+.checkout-timer {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 0.8125rem;
+    color: var(--gray-400);
+}
+
+.checkout-timer span {
+    font-weight: 600;
+    color: var(--gray-600);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .checkout-main {
+        padding: 24px 16px;
+    }
+
+    .checkout-card {
+        border-radius: var(--radius-lg);
+    }
+
+    .checkout-product,
+    .checkout-payment {
+        padding: 24px 20px;
+    }
+
+    .qr-code-box {
+        width: 180px;
+        height: 180px;
+    }
+}

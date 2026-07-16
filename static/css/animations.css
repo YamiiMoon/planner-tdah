@@ -1,0 +1,212 @@
+/* ==========================================
+   ANIMATIONS - Scroll reveal and micro-interactions
+   ========================================== */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes progressFill {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+/* ---------- Scroll Reveal ---------- */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ---------- Fade In (hero elements) ---------- */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fade-in.delay-1 { transition-delay: 0.1s; }
+.fade-in.delay-2 { transition-delay: 0.2s; }
+.fade-in.delay-3 { transition-delay: 0.3s; }
+.fade-in.delay-4 { transition-delay: 0.4s; }
+.fade-in.delay-5 { transition-delay: 0.5s; }
+
+/* ---------- Stagger children ---------- */
+.scroll-reveal:nth-child(2) { transition-delay: 0.1s; }
+.scroll-reveal:nth-child(3) { transition-delay: 0.15s; }
+.scroll-reveal:nth-child(4) { transition-delay: 0.2s; }
+.scroll-reveal:nth-child(5) { transition-delay: 0.25s; }
+.scroll-reveal:nth-child(6) { transition-delay: 0.3s; }
+.scroll-reveal:nth-child(7) { transition-delay: 0.35s; }
+.scroll-reveal:nth-child(8) { transition-delay: 0.4s; }
+.scroll-reveal:nth-child(9) { transition-delay: 0.45s; }
+.scroll-reveal:nth-child(10) { transition-delay: 0.5s; }
+.scroll-reveal:nth-child(11) { transition-delay: 0.55s; }
+.scroll-reveal:nth-child(12) { transition-delay: 0.6s; }
+
+/* ---------- Floating animation ---------- */
+.float {
+    animation: float 3s ease-in-out infinite;
+}
+
+.float-slow {
+    animation: float 5s ease-in-out infinite;
+}
+
+.float-delay {
+    animation: float 3s ease-in-out infinite;
+    animation-delay: 1.5s;
+}
+
+/* ---------- Payment Confirmed ---------- */
+.payment-confirmed {
+    text-align: center;
+    padding: 3rem 2rem;
+    animation: scaleIn 0.5s ease;
+}
+
+.payment-confirmed .confirmed-icon {
+    margin-bottom: 1.5rem;
+    animation: scaleIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.payment-confirmed h2 {
+    font-size: 1.75rem;
+    color: #10B981;
+    margin-bottom: 0.5rem;
+}
+
+.payment-confirmed p {
+    color: #6B7280;
+    margin-bottom: 2rem;
+}
+
+.loading-bar {
+    width: 200px;
+    height: 4px;
+    background: #E5E7EB;
+    border-radius: 2px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.loading-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4F46E5, #7C3AED);
+    border-radius: 2px;
+    animation: progressFill 2s ease-in-out;
+}
+
+/* ---------- Hover effects ---------- */
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* ---------- Counter animation ---------- */
+.counter {
+    display: inline-block;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .scroll-reveal,
+    .fade-in {
+        transition: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    .float,
+    .float-slow,
+    .float-delay {
+        animation: none;
+    }
+}

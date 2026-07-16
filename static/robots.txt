@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /download/
+Disallow: /checkout
+Disallow: /sucesso
+
+Sitemap: /sitemap.xml
