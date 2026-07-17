@@ -6,7 +6,10 @@
       "Bash(not exist *)",
       "PowerShell(Move-Item *)",
       "PowerShell(if \\(-not \\(Test-Path \"C:\\\\Users\\\\João\\\\Desktop\\\\planner\\\\secure\"\\)\\) { New-Item -ItemType Directory \"C:\\\\Users\\\\João\\\\Desktop\\\\planner\\\\secure\" })",
-      "PowerShell(python -c \"import ast; ast.parse\\(open\\('C:/Users/João/Desktop/planner/app.py', encoding='utf-8'\\).read\\(\\)\\); print\\('app.py OK'\\)\")"
+      "PowerShell(python -c \"import ast; ast.parse\\(open\\('C:/Users/João/Desktop/planner/app.py', encoding='utf-8'\\).read\\(\\)\\); print\\('app.py OK'\\)\")",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\João\\\\Desktop\\\\planner\" -Recurse -Force)",
+      "Bash(Select-Object FullName, Length, PSIsContainer)",
+      "Bash(Format-Table -AutoSize)"
     ]
   }
 }

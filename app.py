@@ -6,7 +6,8 @@ import hashlib
 import requests
 from flask import (
     Flask, render_template, jsonify, send_file,
-    abort, session, redirect, url_for, request
+    abort, session, redirect, url_for, request,
+    after_this_request
 )
 from config import (
     ASAAS_API_KEY, ASAAS_ENVIRONMENT, ASAAS_URLS,
@@ -18,6 +19,7 @@ app = Flask(__name__)
 app.secret_key = SECRET_KEY
 app.config['SESSION_COOKIE_HTTPONLY'] = True
 app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
+app.config['SESSION_COOKIE_SECURE'] = not DEBUG
 
 ASAAS_TIMEOUT = 15
 payments_db = {}
@@ -218,17 +220,34 @@ def api_check_payment(token):
 
 @app.route("/download")
 def download():
-    if not session.get("download_authorized"):
+    authorized = session.get("download_authorized")
+    app.logger.info(f"[DOWNLOAD] download_authorized={authorized}")
+
+    if not authorized:
+        app.logger.warning("[DOWNLOAD] Acesso negado — sessão não autorizada")
         abort(403)
 
     secure_dir = os.path.join(app.root_path, "secure")
     pdf_path = os.path.join(secure_dir, PDF_FILENAME)
 
-    session.pop("download_authorized", None)
-    session.pop("download_token", None)
+    app.logger.info(f"[DOWNLOAD] PDF path: {pdf_path}")
+    app.logger.info(f"[DOWNLOAD] os.path.exists: {os.path.exists(pdf_path)}")
+    try:
+        contents = os.listdir(secure_dir) if os.path.isdir(secure_dir) else "DIR NOT FOUND"
+        app.logger.info(f"[DOWNLOAD] Conteúdo de secure/: {contents}")
+    except OSError as e:
+        app.logger.error(f"[DOWNLOAD] Erro ao listar secure/: {e}")
 
     if not os.path.exists(pdf_path):
+        app.logger.error(f"[DOWNLOAD] PDF NÃO ENCONTRADO em: {pdf_path}")
         abort(404)
+
+    @after_this_request
+    def clear_download_session(response):
+        session.pop("download_authorized", None)
+        session.pop("download_token", None)
+        app.logger.info("[DOWNLOAD] Sessão de download limpa após envio")
+        return response
 
     return send_file(
         pdf_path,
@@ -275,7 +294,7 @@ def block_secure(filename):
 
 @app.errorhandler(403)
 def forbidden(e):
-    return render_template("index.html"), 403
+    return redirect(url_for("index"))
 
 
 @app.errorhandler(404)

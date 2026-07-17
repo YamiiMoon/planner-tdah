@@ -6,8 +6,8 @@ __pycache__/
 venv/
 env/
 
-# PDF protegido
-secure/
+# Só exclui o HTML gerado (489KB desnecessário); o PDF DEVE ir para produção
+secure/index.html
 
 # Fonte do planner (não precisa no deploy)
 planner_source/
